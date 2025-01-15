@@ -184,3 +184,16 @@ form textarea:focus {
 
 /* Adjust main content to account for fixed header */
 
+
+.swiper-slide {
+  filter: blur(4px);
+  transition: 0.3s;
+}
+.swiper-slide-active {
+  filter: blur(0px);
+  background: white !important;
+}
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right {
+  background-image: none;
+}

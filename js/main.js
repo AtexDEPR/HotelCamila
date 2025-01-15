@@ -82,5 +82,26 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`Reserva solicitada para ${guests} personas desde ${checkIn} hasta ${checkOut}`);
         });
     }
+
+    let swiper = new Swiper('.swiper-container', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2,
+            slideShadows: true,
+        },
+        loop: true,
+        spaceBetween: 30,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+        }
+    });
+
 });
 

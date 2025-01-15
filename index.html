@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="css/styles.css" rel="stylesheet">
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </head>
 <body class="font-sans">
     <header class="bg-white shadow-md fixed w-full z-10 transition-all duration-300">
@@ -141,56 +143,161 @@
             </div>
         </section>
 
-        <section id="testimonials" class="py-20 fade-in-section">
+        <section class="py-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-8">Lo que dicen nuestros huéspedes</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-lg fade-in-section">
-                        <p class="text-gray-600 mb-4">"Una experiencia inolvidable. El personal fue extremadamente amable y las instalaciones son de primera clase. ¡Definitivamente volveremos!"</p>
-                        <div class="flex items-center">
-                            <img src="img/guest1.jpg" alt="Huésped" class="w-12 h-12 rounded-full mr-4">
-                            <div>
-                                <h4 class="font-semibold">María González</h4>
-                                <p class="text-gray-500">Madrid, España</p>
+                <h2 class="text-3xl font-bold text-center text-white mb-8">Lo que dicen nuestros huéspedes</h2>
+                
+                <!-- Swiper -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Testimonio 1 -->
+                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
+                            <img src="right-quote.png" alt="Cita" class="absolute top-4 right-4 opacity-25 w-12 h-12">
+                            <div class="content">
+                                <p class="text-gray-600 mb-4">"Una experiencia inolvidable. El personal fue extremadamente amable y las instalaciones son de primera clase. ¡Definitivamente volveremos!"</p>
+                                <div class="details flex items-center">
+                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
+                                        <img src="img/guest1.jpg" alt="Huésped 1" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold">María González</h3>
+                                        <p class="text-gray-500">Madrid, España</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Testimonio 2 -->
+                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
+                            <img src="right-quote.png" alt="Cita" class="absolute top-4 right-4 opacity-25 w-12 h-12">
+                            <div class="content">
+                                <p class="text-gray-600 mb-4">"Las instalaciones son perfectas y la ubicación es ideal. Tuvimos una estancia maravillosa, gracias al excelente servicio del equipo."</p>
+                                <div class="details flex items-center">
+                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
+                                        <img src="img/guest2.jpg" alt="Huésped 2" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Juan Pérez</h3>
+                                        <p class="text-gray-500">Buenos Aires, Argentina</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Testimonio 3 -->
+                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
+                            <img src="right-quote.png" alt="Cita" class="absolute top-4 right-4 opacity-25 w-12 h-12">
+                            <div class="content">
+                                <p class="text-gray-600 mb-4">"Todo fue perfecto, desde la atención hasta la calidad del servicio. ¡Superó todas nuestras expectativas!"</p>
+                                <div class="details flex items-center">
+                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
+                                        <img src="img/guest3.jpg" alt="Huésped 3" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Carlos Gómez</h3>
+                                        <p class="text-gray-500">Lima, Perú</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Testimonio 4 -->
+                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
+                            <img src="right-quote.png" alt="Cita" class="absolute top-4 right-4 opacity-25 w-12 h-12">
+                            <div class="content">
+                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin duda volveré a quedarme aquí." </p>
+                                <div class="details flex items-center">
+                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
+                                        <img src="img/guest4.jpg" alt="Huésped 4" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
+                                        <p class="text-gray-500">México, México</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
+                            <img src="right-quote.png" alt="Cita" class="absolute top-4 right-4 opacity-25 w-12 h-12">
+                            <div class="content">
+                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin duda volveré a quedarme aquí." </p>
+                                <div class="details flex items-center">
+                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
+                                        <img src="img/guest4.jpg" alt="Huésped 4" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
+                                        <p class="text-gray-500">México, México</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
+                            <img src="right-quote.png" alt="Cita" class="absolute top-4 right-4 opacity-25 w-12 h-12">
+                            <div class="content">
+                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin duda volveré a quedarme aquí." </p>
+                                <div class="details flex items-center">
+                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
+                                        <img src="img/guest4.jpg" alt="Huésped 4" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
+                                        <p class="text-gray-500">México, México</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
+                            <img src="right-quote.png" alt="Cita" class="absolute top-4 right-4 opacity-25 w-12 h-12">
+                            <div class="content">
+                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin duda volveré a quedarme aquí." </p>
+                                <div class="details flex items-center">
+                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
+                                        <img src="img/guest4.jpg" alt="Huésped 4" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
+                                        <p class="text-gray-500">México, México</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
+                            <img src="right-quote.png" alt="Cita" class="absolute top-4 right-4 opacity-25 w-12 h-12">
+                            <div class="content">
+                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin duda volveré a quedarme aquí." </p>
+                                <div class="details flex items-center">
+                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
+                                        <img src="img/guest4.jpg" alt="Huésped 4" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
+                                        <p class="text-gray-500">México, México</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
+                            <img src="right-quote.png" alt="Cita" class="absolute top-4 right-4 opacity-25 w-12 h-12">
+                            <div class="content">
+                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin duda volveré a quedarme aquí." </p>
+                                <div class="details flex items-center">
+                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
+                                        <img src="img/guest4.jpg" alt="Huésped 4" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
+                                        <p class="text-gray-500">México, México</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Add more testimonials here -->
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="py-20 bg-gray-100 fade-in-section">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-8">Contáctanos</h2>
-                <div class="flex flex-wrap -mx-3">
-                    <div class="w-full md:w-1/2 px-3 mb-6">
-                        <h3 class="text-xl font-semibold mb-4">Información de contacto</h3>
-                        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-500"></i> Calle Principal 123, Ciudad</p>
-                        <p class="mb-2"><i class="fas fa-phone mr-2 text-blue-500"></i> +1 234 567 890</p>
-                        <p class="mb-2"><i class="fas fa-envelope mr-2 text-blue-500"></i> info@hotelrincondelcarmen.com</p>
-                    </div>
-                    <div class="w-full md:w-1/2 px-3">
-                        <form>
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-semibold mb-2">Nombre</label>
-                                <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="message" class="block text-gray-700 font-semibold mb-2">Mensaje</label>
-                                <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
-                            </div>
-                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Enviar mensaje</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        
 
     <footer class="text-white py-10">
         <div class="container mx-auto px-6">
