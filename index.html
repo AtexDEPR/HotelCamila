@@ -1,11 +1,249 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hotel el rincon de Camila</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel el Rincón del Carmen - Tu refugio de paz</title>
+    <meta name="description" content="Descubre el lujo y la tranquilidad en el Hotel el Rincón del Carmen. Reserva ahora y vive una experiencia inolvidable.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/styles.css" rel="stylesheet">
 </head>
-<body>
-  hola mundo
+<body class="font-sans">
+    <header class="bg-white shadow-md fixed w-full z-10 transition-all duration-300">
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="#home" class="font-bold text-xl text-gray-800 flex items-center">
+            <img src="img/logo.png" alt="Logo Hotel el Rincón del Carmen" class="h-8 mr-2">
+            <span class="hidden sm:inline">Hotel el Rincón del Carmen</span>
+        </a>
+        <div class="md:hidden">
+            <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600">
+                <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                    <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+                </svg>
+            </button>
+        </div>
+        <ul class="hidden md:flex space-x-4">
+            <li><a href="#home" class="text-gray-800 hover:text-gray-600 px-3 py-2">Inicio</a></li>
+            <li><a href="#about" class="text-gray-800 hover:text-gray-600 px-3 py-2">Sobre Nosotros</a></li>
+            <li><a href="#rooms" class="text-gray-800 hover:text-gray-600 px-3 py-2">Habitaciones</a></li>
+            <li><a href="#services" class="text-gray-800 hover:text-gray-600 px-3 py-2">Servicios</a></li>
+            <li><a href="#testimonials" class="text-gray-800 hover:text-gray-600 px-3 py-2">Testimonios</a></li>
+            <li><a href="#contact" class="text-gray-800 hover:text-gray-600 px-3 py-2">Contacto</a></li>
+            <li><a href="login.html" class="text-gray-800 hover:text-gray-600 px-3 py-2">Iniciar sesión / Registrarse</a></li>
+        </ul>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden">
+        <a href="#home" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Inicio</a>
+        <a href="#about" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Sobre Nosotros</a>
+        <a href="#rooms" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Habitaciones</a>
+        <a href="#services" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Servicios</a>
+        <a href="#testimonials" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Testimonios</a>
+        <a href="#contact" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Contacto</a>
+        <a href="login.html" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Iniciar sesión / Registrarse</a>
+    </div>
+</header>
+
+    <main style="padding-top: 80px;">
+        <section id="home" class="banner min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('./img/areas-comunes/cartagena_dubai_exterior_piscina_tumbonas_1_1600x1090-1600h.webp');">
+            <div class="text-center text-white">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Bienvenido al Hotel el Rincón del Carmen</h1>
+                <p class="text-xl md:text-2xl mb-8">Tu refugio de paz en el corazón de la ciudad</p>
+                <div class="bg-white p-4 rounded-lg shadow-lg inline-block">
+                    <form id="reservation-form" class="flex flex-wrap items-center justify-center gap-4">
+                        <div>
+                            <label for="check-in" class="block text-gray-700 text-sm font-bold mb-2">Llegada</label>
+                            <input type="date" id="check-in" name="check-in" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        </div>
+                        <div>
+                            <label for="check-out" class="block text-gray-700 text-sm font-bold mb-2">Salida</label>
+                            <input type="date" id="check-out" name="check-out" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        </div>
+                        <div>
+                            <label for="guests" class="block text-gray-700 text-sm font-bold mb-2">Huéspedes</label>
+                            <select id="guests" name="guests" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                                <option value="1">1 persona</option>
+                                <option value="2">2 personas</option>
+                                <option value="3">3 personas</option>
+                                <option value="4">4 personas</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                Reservar ahora
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-gray-100 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Sobre Nosotros</h2>
+                <div class="flex flex-wrap items-center">
+                    <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                        <img src="./img/areas-comunes/DUBAI-CARTAGENA-36-2304w.webp" alt="Hotel el Rincón del Carmen" class="rounded-lg shadow-lg">
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-10">
+                        <p class="text-gray-700 mb-4">
+                            El Hotel el Rincón del Carmen es un oasis de tranquilidad en medio de la ciudad. Nuestro compromiso es brindar a nuestros huéspedes una experiencia inolvidable, combinando el confort moderno con el encanto tradicional.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Con una historia que se remonta a más de 50 años, nuestro hotel ha sido testigo de innumerables momentos especiales y ha acogido a visitantes de todo el mundo. Nuestro equipo dedicado se esfuerza por mantener los más altos estándares de servicio y hospitalidad.
+                        </p>
+                        <a href="#" class="text-blue-500 font-semibold hover:text-blue-600">Conoce más sobre nuestra historia</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rooms" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Nuestras Habitaciones</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Repeat this block for each room type -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden fade-in-section">
+                        <img src="./img/habitaciones/51155515_1061176420732130_3221622292618412032_n.webp" alt="Habitación Estándar" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Habitación Estándar</h3>
+                            <p class="text-gray-600 mb-4">Perfecta para el viajero individual o parejas que buscan comodidad y estilo.</p>
+                            <a href="#" class="text-blue-500 font-semibold hover:text-blue-600">Ver detalles</a>
+                        </div>
+                    </div>
+                    <!-- Add more room types here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 bg-gray-100 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Nuestros Servicios</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in-section">
+                        <i class="fas fa-utensils text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Restaurante Gourmet</h3>
+                        <p class="text-gray-600">Disfruta de nuestra exquisita gastronomía local e internacional.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in-section">
+                        <i class="fas fa-spa text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Spa y Bienestar</h3>
+                        <p class="text-gray-600">Relájate y renuévate con nuestros tratamientos de spa.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in-section">
+                        <i class="fas fa-swimming-pool text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Piscina y Zonas Húmedas</h3>
+                        <p class="text-gray-600">Refrésquese en nuestra piscina y disfrute de nuestras instalaciones.</p>
+                    </div>
+                    <!-- Add more services here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Lo que dicen nuestros huéspedes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg fade-in-section">
+                        <p class="text-gray-600 mb-4">"Una experiencia inolvidable. El personal fue extremadamente amable y las instalaciones son de primera clase. ¡Definitivamente volveremos!"</p>
+                        <div class="flex items-center">
+                            <img src="img/guest1.jpg" alt="Huésped" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">María González</h4>
+                                <p class="text-gray-500">Madrid, España</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add more testimonials here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-gray-100 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Contáctanos</h2>
+                <div class="flex flex-wrap -mx-3">
+                    <div class="w-full md:w-1/2 px-3 mb-6">
+                        <h3 class="text-xl font-semibold mb-4">Información de contacto</h3>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-500"></i> Calle Principal 123, Ciudad</p>
+                        <p class="mb-2"><i class="fas fa-phone mr-2 text-blue-500"></i> +1 234 567 890</p>
+                        <p class="mb-2"><i class="fas fa-envelope mr-2 text-blue-500"></i> info@hotelrincondelcarmen.com</p>
+                    </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-semibold mb-2">Nombre</label>
+                                <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-gray-700 font-semibold mb-2">Mensaje</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                            </div>
+                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Enviar mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-white py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-2">Hotel el Rincón del Carmen</h3>
+                    <p class="mb-4">Tu refugio de paz en el corazón de la ciudad.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-2">Enlaces rápidos</h3>
+                    <ul>
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Inicio</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">Sobre Nosotros</a></li>
+                        <li><a href="#rooms" class="text-gray-400 hover:text-white">Habitaciones</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white">Servicios</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-2">Políticas</h3>
+                    <ul>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Términos y condiciones</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Política de privacidad</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Política de cancelación</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4">
+                    <h3 class="text-xl font-semibold mb-2">Boletín informativo</h3>
+                    <p class="mb-4">Suscríbete para recibir nuestras últimas ofertas y noticias.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Tu email" class="w-full px-3 py-2 text-gray-700 bg-gray-200 rounded-l-md focus:outline-none" required>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300">Suscribir</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-sm text-center">
+                <p>&copy; 2023 Hotel el Rincón del Carmen. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="whatsapp-button" class="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 cursor-pointer shadow-lg z-50 transition-all duration-300 hover:bg-green-600">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/whatsapp-button.js"></script>
 </body>
 </html>
+

@@ -1,6 +1,6 @@
-# Hotel El Rincón de Camila - Sitio Web de Reservas
+# Hotel El Rincón del Carmen - Sitio Web de Reservas
 
-Este proyecto consiste en el desarrollo de un sitio web sencillo, atractivo y funcional para el Hotel El Rincón de Camila. El objetivo principal es mejorar la visibilidad online del hotel y facilitar la gestión de reservas de habitaciones, ofreciendo una experiencia agradable tanto en dispositivos móviles como en otros dispositivos.
+Este proyecto consiste en el desarrollo de un sitio web sencillo, atractivo y funcional para el Hotel El Rincón del Carmen. El objetivo principal es mejorar la visibilidad online del hotel y facilitar la gestión de reservas de habitaciones, ofreciendo una experiencia agradable tanto en dispositivos móviles como en otros dispositivos.
 
 El sitio estará desarrollado utilizando **JavaScript Vanilla**, **HTML** y **TailwindCSS** para asegurar una interfaz visualmente atractiva, rápida y responsiva.
 
@@ -99,23 +99,30 @@ npm run server
 ## Estructura del Proyecto
 
 ```
-rincon-del-carmen/
+hotel-rincon-del-carmen/
 │
-├── public/
-│   ├── index.html            # Página de inicio (Landing Page)
-│   ├── disponibilidad.html   # Página de consulta y reservas
-│   ├── contacto.html         # Página de contacto y ubicación
-│   └── assets/               # Archivos de imágenes y otros recursos estáticos
+├── index.html
+├── reservas.html
+├── contacto.html
 │
-├── src/
-│   ├── js/                   # Lógica JavaScript del sitio
-│   │   └── main.js           # Código principal de la aplicación
-│   ├── css/                  # Estilos CSS (Tailwind configurado)
-│   └── data/                 # Archivos de datos simulados (JSON)
+├── css/
+│   └── styles.css
 │
-├── .gitignore                # Archivos a excluir del control de versiones
-├── package.json              # Configuración de dependencias y scripts
-└── README.md                 # Este archivo
+├── js/
+│   ├── main.js
+│   ├── carousel.js
+│   ├── reservas.js
+│   ├── whatsapp-button.js
+│   └── api.js
+│
+├── img/
+│   ├── logo.png
+│   ├── habitaciones/
+│   ├── areas-comunes/
+│   └── servicios/
+│
+└── data/
+    └── db.json
 ```
 
 ---
@@ -138,4 +145,4 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulte el archivo LICENSE
 
 ---
 
-¡Gracias por visitar el proyecto del **Hotel El Rincón de Camila**!
+¡Gracias por visitar el proyecto del **Hotel El Rincón del Carmen**!

@@ -1,0 +1,186 @@
+/* Estilos personalizados adicionales */
+
+/* Estilos generales */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Animación de fade-in para elementos */
+.animate-fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos para el header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Ajustar el contenido principal para el header fijo */
+main {
+  padding-top: 80px; /* Ajusta este valor según la altura de tu header */
+}
+
+
+/* Estilos para el botón de WhatsApp */
+#whatsapp-button {
+  transition: all 0.3s ease;
+}
+
+#whatsapp-button:hover {
+  transform: scale(1.1);
+}
+
+/* Estilos para el carrusel */
+#carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+#carousel button {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+#carousel button:hover {
+  opacity: 1;
+}
+
+/* Estilos para las tarjetas de servicios */
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los enlaces del footer */
+footer a {
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+/* Estilos para el banner */
+.banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  margin-top: -4vh;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.banner > div {
+  position: relative;
+  z-index: 1;
+}
+
+footer{
+  background-color: rgba(12, 12, 12, 0.884);
+}
+
+/* Estilos para las secciones */
+section {
+  padding: 100px 0;
+}
+
+/* Estilos para los botones */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los testimonios */
+.testimonial {
+  transition: all 0.3s ease;
+}
+
+.testimonial:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el formulario de contacto */
+form input,
+form textarea {
+  transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #3182ce;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  section {
+      padding: 60px 0;
+  }
+
+  .banner h1 {
+      font-size: 2.5rem;
+  }
+
+  .banner p {
+      font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .banner h1 {
+      font-size: 2rem;
+  }
+
+  .banner p {
+      font-size: 1rem;
+  }
+}
+
+/* Animation classes */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20vh);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, transform 1.2s ease-out;
+  will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+/* Adjust main content to account for fixed header */
+
