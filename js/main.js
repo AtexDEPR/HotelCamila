@@ -105,3 +105,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+        const servicesGrid = document.getElementById('servicesGrid');
+        const toggleButton = document.getElementById('toggleServices');
+        const hiddenServices = servicesGrid.querySelectorAll('.hidden');
+        let expanded = false;
+
+        toggleButton.addEventListener('click', function() {
+            hiddenServices.forEach(service => {
+                service.classList.toggle('hidden');
+            });
+
+            expanded = !expanded;
+            toggleButton.textContent = expanded ? 'Ver menos servicios' : 'Ver más servicios';
+
+            if (!expanded) {
+                servicesGrid.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
