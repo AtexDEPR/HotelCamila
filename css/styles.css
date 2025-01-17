@@ -197,3 +197,12 @@ form textarea:focus {
 .swiper-container-3d .swiper-slide-shadow-right {
   background-image: none;
 }
+
+#loginCard {
+  transition: opacity 0.3s ease;
+}
+
+#loginCard.hidden {
+  opacity: 0;
+  pointer-events: none;
+}

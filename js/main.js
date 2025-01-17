@@ -1,4 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Obtener el usuario actual desde localStorage
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    // Elementos de la barra de navegación
+    const userProfile = document.getElementById("userProfile");
+    const userName = document.getElementById("userName");
+    const loginLink = document.getElementById("loginLink");
+    const mobileUserProfile = document.getElementById("mobileUserProfile");
+    const mobileUserName = document.getElementById("mobileUserName");
+    const mobileLoginLink = document.getElementById("mobileLoginLink");
+
+    // Mostrar el perfil del usuario si está autenticado
+    if (currentUser) {
+        // Mostrar nombre y foto en la barra de navegación
+        userProfile.classList.remove("hidden");
+        userName.textContent = currentUser.nombre;
+        loginLink.classList.add("hidden");
+
+        // Mostrar nombre y foto en el menú móvil
+        mobileUserProfile.classList.remove("hidden");
+        mobileUserName.textContent = currentUser.nombre;
+        mobileLoginLink.classList.add("hidden");
+    } else {
+        // Ocultar el perfil del usuario si no está autenticado
+        userProfile.classList.add("hidden");
+        loginLink.classList.remove("hidden");
+        mobileUserProfile.classList.add("hidden");
+        mobileLoginLink.classList.remove("hidden");
+    }
+
     // Manejo del menú móvil
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -17,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cambiar estilo del header al hacer scroll
     const header = document.querySelector('header');
     const headerHeight = header.offsetHeight;
-
 
     // Animación suave para los enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -70,19 +99,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Manejo del formulario de reserva
     const reservationForm = document.getElementById('reservation-form');
+    const loginCard = document.getElementById('loginCard');
+
     if (reservationForm) {
         reservationForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const checkIn = document.getElementById('check-in').value;
-            const checkOut = document.getElementById('check-out').value;
-            const guests = document.getElementById('guests').value;
+            if (!currentUser) {
+                e.preventDefault(); // Evitar que el formulario se envíe
+                loginCard.classList.remove('hidden'); // Mostrar la tarjeta de invitación
+            } else {
+                const checkIn = document.getElementById('check-in').value;
+                const checkOut = document.getElementById('check-out').value;
+                const guests = document.getElementById('guests').value;
 
-            // Aquí normalmente enviarías estos datos al servidor para procesar la reserva
-            console.log('Intento de reserva:', { checkIn, checkOut, guests });
-            alert(`Reserva solicitada para ${guests} personas desde ${checkIn} hasta ${checkOut}`);
+                // Aquí normalmente enviarías estos datos al servidor para procesar la reserva
+                console.log('Intento de reserva:', { checkIn, checkOut, guests });
+                alert(`Reserva solicitada para ${guests} personas desde ${checkIn} hasta ${checkOut}`);
+            }
         });
     }
 
+    // Ocultar la tarjeta de invitación al hacer clic fuera de ella
+    loginCard.addEventListener('click', function (e) {
+        if (e.target === loginCard) {
+            loginCard.classList.add('hidden');
+        }
+    });
+
+    // Configuración del carrusel (Swiper)
     let swiper = new Swiper('.swiper-container', {
         effect: 'coverflow',
         grabCursor: true,
@@ -103,29 +146,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-});
+    // Mostrar/ocultar servicios adicionales
+    const servicesGrid = document.getElementById('servicesGrid');
+    const toggleButton = document.getElementById('toggleServices');
+    const hiddenServices = servicesGrid.querySelectorAll('.hidden');
+    let expanded = false;
 
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-        const servicesGrid = document.getElementById('servicesGrid');
-        const toggleButton = document.getElementById('toggleServices');
-        const hiddenServices = servicesGrid.querySelectorAll('.hidden');
-        let expanded = false;
-
-        toggleButton.addEventListener('click', function() {
-            hiddenServices.forEach(service => {
-                service.classList.toggle('hidden');
-            });
-
-            expanded = !expanded;
-            toggleButton.textContent = expanded ? 'Ver menos servicios' : 'Ver más servicios';
-
-            if (!expanded) {
-                servicesGrid.scrollIntoView({ behavior: 'smooth' });
-            }
+    toggleButton.addEventListener('click', function() {
+        hiddenServices.forEach(service => {
+            service.classList.toggle('hidden');
         });
+
+        expanded = !expanded;
+        toggleButton.textContent = expanded ? 'Ver menos servicios' : 'Ver más servicios';
+
+        if (!expanded) {
+            servicesGrid.scrollIntoView({ behavior: 'smooth' });
+        }
     });
+});

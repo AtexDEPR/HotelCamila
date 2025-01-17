@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
     <link href="css/styles.css" rel="stylesheet">
     <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -20,40 +21,65 @@
 <body class="font-sans">
     <header class="bg-white shadow-md fixed w-full z-10 transition-all duration-300">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
             <a href="#home" class="font-bold text-xl text-gray-800 flex items-center">
                 <img src="img/logo.png" alt="Logo Hotel el Rincón del Carmen" class="h-8 mr-2">
                 <span class="hidden sm:inline">Hotel el Rincón del Carmen</span>
             </a>
+    
+            <!-- Botón de menú móvil -->
             <div class="md:hidden">
                 <button id="mobile-menu-button"
                     class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600">
                     <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                         <path
-                            d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z" />
+                            d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z" />
                     </svg>
                 </button>
             </div>
+    
+            <!-- Menú de navegación -->
             <ul class="hidden md:flex space-x-4">
-                <li><a href="#home" class="text-gray-800 hover:text-gray-600 px-3 py-2">Inicio</a></li>
-                <li><a href="#about" class="text-gray-800 hover:text-gray-600 px-3 py-2">Sobre Nosotros</a></li>
-                <li><a href="#rooms" class="text-gray-800 hover:text-gray-600 px-3 py-2">Habitaciones</a></li>
-                <li><a href="#services" class="text-gray-800 hover:text-gray-600 px-3 py-2">Servicios</a></li>
-                <li><a href="#testimonials" class="text-gray-800 hover:text-gray-600 px-3 py-2">Testimonios</a></li>
-                <li><a href="./contacto.html" class="text-gray-800 hover:text-gray-600 px-3 py-2">Contacto</a></li>
-                <li><a href="./Login.html" class="text-gray-800 hover:text-gray-600 px-3 py-2">Iniciar sesión / Registrarse</a></li>
+                <li><a href="#home" class="text-gray-800 hover:text-blue-600 px-3 py-2">Inicio</a></li>
+                <li><a href="#about" class="text-gray-800 hover:text-blue-600 px-3 py-2">Sobre Nosotros</a></li>
+                <li><a href="#rooms" class="text-gray-800 hover:text-blue-600 px-3 py-2">Habitaciones</a></li>
+                <li><a href="./reservas.html" class="text-gray-800 hover:text-blue-600 px-3 py-2">Reservas</a></li>
+                <li><a href="#services" class="text-gray-800 hover:text-blue-600 px-3 py-2">Servicios</a></li>
+                <li><a href="#testimonials" class="text-gray-800 hover:text-blue-600 px-3 py-2">Testimonios</a></li>
+                <li><a href="./contacto.html" class="text-gray-800 hover:text-blue-600 px-3 py-2">Contacto</a></li>
+    
+                <!-- Contenedor dinámico para el usuario autenticado -->
+                <li id="userMenu">
+                    <div id="userProfile" class="hidden flex items-center space-x-2">
+                        <img src="./img/Ususario.webp" alt="Foto de perfil" class="w-8 h-8 rounded-full">
+                        <span id="userName" class="text-gray-800 hover:text-blue-600"></span>
+                    </div>
+                    <!-- Enlace de inicio de sesión/registro para usuarios no autenticados -->
+                    <a href="./Login.html" id="loginLink" class="text-gray-800 hover:text-blue-600 px-3 py-2">Iniciar sesión / Registrarse</a>
+                </li>
             </ul>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#home" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Inicio</a>
-            <a href="#about" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Sobre Nosotros</a>
-            <a href="#rooms" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Habitaciones</a>
-            <a href="#services" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Servicios</a>
-            <a href="#testimonials" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Testimonios</a>
-            <a href="#contact" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Contacto</a>
-            <a href="login.html" class="block text-gray-800 hover:bg-gray-200 px-3 py-2">Iniciar sesión /
-                Registrarse</a>
+    
+        <!-- Menú desplegable para móviles y tabletas -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
+            <a href="#home" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Inicio</a>
+            <a href="#about" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Sobre Nosotros</a>
+            <a href="#rooms" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Habitaciones</a>
+            <a href="./reservas.html" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Reservas</a>
+            <a href="#services" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Servicios</a>
+            <a href="#testimonials" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Testimonios</a>
+            <a href="./contacto.html" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Contacto</a>
+    
+            <!-- Contenedor dinámico para el usuario autenticado en móvil -->
+            <div id="mobileUserProfile" class="hidden flex items-center space-x-2 p-3">
+                <img src="./img/Ususario.webp" alt="Foto de perfil" class="w-8 h-8 rounded-full">
+                <span id="mobileUserName" class="text-gray-800 hover:text-blue-600"></span>
+            </div>
+            <!-- Enlace de inicio de sesión/registro para usuarios no autenticados en móvil -->
+            <a href="./Login.html" id="mobileLoginLink" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Iniciar sesión / Registrarse</a>
         </div>
     </header>
+    
 
     <main style="padding-top: 80px;">
         <section id="home" class="banner min-h-screen flex items-center justify-center bg-cover bg-center"
@@ -757,9 +783,21 @@
         </footer>
 
         <div id="whatsapp-button"
-            class="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 cursor-pointer shadow-lg z-50 transition-all duration-300 hover:bg-green-600">
+            class="fixed bottom-4 left-4 bg-green-500 text-white rounded-full p-3 cursor-pointer shadow-lg z-50 transition-all duration-300 hover:bg-green-600">
             <i class="fab fa-whatsapp text-2xl"></i>
         </div>
+
+        <!-- Tarjeta de invitación (inicialmente oculta) -->
+<div id="loginCard" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+        <h3 class="text-xl font-semibold mb-4">¡Inicia sesión o regístrate para continuar!</h3>
+        <p class="text-gray-600 mb-6">Necesitas una cuenta para realizar reservas.</p>
+        <div class="flex justify-center space-x-4">
+            <a href="./Login.html" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Iniciar sesión</a>
+            <a href="./Login.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Registrarse</a>
+        </div>
+    </div>
+</div>
 
         <script src="js/main.js"></script>
         <script src="js/carousel.js"></script>
