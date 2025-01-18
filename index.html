@@ -16,9 +16,12 @@
     <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="./js/buscador.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/whatsapp-button.js" defer></script>
 </head>
 
-<body class="font-sans">
+<body class="font-sans overflow-x-hidden">
+    
     <header class="bg-white shadow-md fixed w-full z-10 transition-all duration-300">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <!-- Logo -->
@@ -29,11 +32,9 @@
     
             <!-- Botón de menú móvil -->
             <div class="md:hidden">
-                <button id="mobile-menu-button"
-                    class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600">
+                <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600">
                     <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                        <path
-                            d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z" />
+                        <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z" />
                     </svg>
                 </button>
             </div>
@@ -49,12 +50,59 @@
                 <li><a href="./contacto.html" class="text-gray-800 hover:text-blue-600 px-3 py-2">Contacto</a></li>
     
                 <!-- Contenedor dinámico para el usuario autenticado -->
-                <li id="userMenu">
-                    <div id="userProfile" class="hidden flex items-center space-x-2">
+                <li id="userMenu" class="relative">
+                    <!-- Botón de usuario -->
+                    <div id="userProfile" class="hidden flex items-center space-x-2 cursor-pointer">
                         <img src="./img/Ususario.webp" alt="Foto de perfil" class="w-8 h-8 rounded-full">
-                        <span id="userName" class="text-gray-800 hover:text-blue-600"></span>
+                        <span id="userName" class="text-gray-800 hover:text-blue-600" onclick="menuToggle()">Nombre del Usuario</span>
                     </div>
-                    <!-- Enlace de inicio de sesión/registro para usuarios no autenticados -->
+                
+                    <!-- Menú desplegable -->
+                    <div id="userDropdown" class="menu absolute top-12 right-0 bg-white shadow-lg rounded-lg w-48 py-2 z-50 hidden">
+                        <h3 class="px-4 py-2 text-sm font-semibold text-gray-700">Nombre del Usuario <br><span class="text-xs text-gray-500">Rol del Usuario</span></h3>
+                        <ul>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="flex items-center space-x-2 text-gray-700">
+                                    <img src="./img/iconos/user.png" alt="Mi Perfil" class="w-4 h-4">
+                                    <span>Mi Perfil</span>
+                                </a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="flex items-center space-x-2 text-gray-700">
+                                    <img src="./img/iconos/edit.png" alt="Editar Perfil" class="w-4 h-4">
+                                    <span>Editar Perfil</span>
+                                </a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="flex items-center space-x-2 text-gray-700">
+                                    <img src="./img/iconos/envelope.png" alt="Mensajes" class="w-4 h-4">
+                                    <span>Mensajes</span>
+                                </a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="flex items-center space-x-2 text-gray-700">
+                                    <img src="./img/iconos/settings.png" alt="Configuración" class="w-4 h-4">
+                                    <span>Configuración</span>
+                                </a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" class="flex items-center space-x-2 text-gray-700">
+                                    <img src="./img/iconos/question.png" alt="Ayuda" class="w-4 h-4">
+                                    <span>Ayuda</span>
+                                </a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100">
+                                <a href="#" id="logoutButton" class="flex items-center space-x-2 text-gray-700">
+                                    <img src="./img/iconos/log-out.png" alt="Cerrar Sesión" class="w-4 h-4">
+                                    <span>Cerrar Sesión</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+    
+                <!-- Enlace de inicio de sesión/registro para usuarios no autenticados -->
+                <li>
                     <a href="./Login.html" id="loginLink" class="text-gray-800 hover:text-blue-600 px-3 py-2">Iniciar sesión / Registrarse</a>
                 </li>
             </ul>
@@ -75,38 +123,38 @@
                 <img src="./img/Ususario.webp" alt="Foto de perfil" class="w-8 h-8 rounded-full">
                 <span id="mobileUserName" class="text-gray-800 hover:text-blue-600"></span>
             </div>
+    
             <!-- Enlace de inicio de sesión/registro para usuarios no autenticados en móvil -->
             <a href="./Login.html" id="mobileLoginLink" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Iniciar sesión / Registrarse</a>
         </div>
     </header>
-    
 
-    <main style="padding-top: 80px;">
+    <main>
         <section id="home" class="banner min-h-screen flex items-center justify-center bg-cover bg-center"
             style="background-image: url('./img/areas-comunes/cartagena_dubai_exterior_piscina_tumbonas_1_1600x1090-1600h.webp');">
             <div class="text-center text-white">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">Bienvenido al Hotel el Rincón del Carmen</h1>
                 <p class="text-xl md:text-2xl mb-8">Tu refugio de paz en el corazón de la ciudad</p>
-                <div class="bg-white p-4 rounded-lg shadow-lg inline-block">
-                    <form id="reservation-form" class="flex flex-wrap items-center justify-center gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-lg w-full max-w-md mx-auto">
+                    <form id="reservation-form" class="flex flex-col space-y-4">
                         <div>
                             <label for="check-in" class="block text-gray-700 text-sm font-bold mb-2">Llegada</label>
                             <input type="date" id="check-in" name="check-in"
-                                class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 required>
                             <p id="check-in-error" class="text-red-500 text-xs mt-1 hidden">Fecha inválida</p>
                         </div>
                         <div>
                             <label for="check-out" class="block text-gray-700 text-sm font-bold mb-2">Salida</label>
                             <input type="date" id="check-out" name="check-out"
-                                class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 required>
                             <p id="check-out-error" class="text-red-500 text-xs mt-1 hidden">Fecha inválida</p>
                         </div>
                         <div>
                             <label for="guests" class="block text-gray-700 text-sm font-bold mb-2">Huéspedes</label>
                             <select id="guests" name="guests"
-                                class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 required>
                                 <option value="1">1 persona</option>
                                 <option value="2">2 personas</option>
@@ -118,7 +166,7 @@
                         </div>
                         <div>
                             <button type="submit"
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105">
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105">
                                 Buscar Disponibilidad
                             </button>
                         </div>
@@ -133,7 +181,7 @@
                 <div class="flex flex-wrap items-center">
                     <div class="w-full md:w-1/2 mb-8 md:mb-0">
                         <img src="./img/areas-comunes/DUBAI-CARTAGENA-36-2304w.webp" alt="Hotel el Rincón del Carmen"
-                            class="rounded-lg shadow-lg">
+                            class="rounded-lg shadow-lg w-full">
                     </div>
                     <div class="w-full md:w-1/2 md:pl-10">
                         <p class="text-gray-700 mb-4">
@@ -157,6 +205,7 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center mb-8">Nuestras Habitaciones</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Habitación Estándar -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden fade-in-section">
                         <img src="./img/habitaciones/descarga (1).jpeg" alt="Habitación Estándar"
                             class="w-full h-48 object-cover">
@@ -196,6 +245,7 @@
                         </div>
                     </div>
 
+                    <!-- Suite Junior -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden fade-in-section">
                         <img src="./img/habitaciones/descarga (8).jpeg" alt="Suite Junior"
                             class="w-full h-48 object-cover">
@@ -235,6 +285,7 @@
                         </div>
                     </div>
 
+                    <!-- Suite Ejecutiva -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden fade-in-section">
                         <img src="./img/habitaciones/1041632.webp" alt="Suite Ejecutiva"
                             class="w-full h-48 object-cover">
@@ -274,6 +325,7 @@
                         </div>
                     </div>
 
+                    <!-- Suite Presidencial -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden fade-in-section">
                         <img src="./img/habitaciones/1041635.webp" alt="Suite Presidencial"
                             class="w-full h-48 object-cover">
@@ -313,6 +365,7 @@
                         </div>
                     </div>
 
+                    <!-- Suite VIP -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden fade-in-section">
                         <img src="https://www.kayak.com.co/rimg/himg/b3/28/e0/expediav2-3751476-174cd0-449992.jpg?width=1366&height=768&crop=true"
                             alt="Suite VIP" class="w-full h-48 object-cover">
@@ -359,7 +412,7 @@
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center mb-8">Nuestros Servicios</h2>
                 <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- First 8 services are always visible -->
+                    <!-- Servicios visibles inicialmente -->
                     <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in-section">
                         <svg class="w-12 h-12 text-blue-500 mb-4 mx-auto" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -431,7 +484,7 @@
                         </svg>
                         <h3 class="text-xl font-semibold mb-2">Estacionamiento</h3>
                     </div>
-                    <!-- Remaining services (initially hidden) -->
+                    <!-- Servicios ocultos inicialmente -->
                     <div class="bg-white p-6 rounded-lg shadow-lg text-center fade-in-section hidden">
                         <svg class="w-12 h-12 text-blue-500 mb-4 mx-auto" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -553,9 +606,9 @@
         <section class="py-20" id="testimonials">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center mb-8">Lo que dicen nuestros huéspedes</h2>
-
+        
                 <!-- Swiper -->
-                <div class="swiper-container">
+                <div class="swiper-container overflow-hidden">
                     <div class="swiper-wrapper">
                         <!-- Testimonio 1 -->
                         <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
@@ -577,7 +630,7 @@
                                 </div>
                             </div>
                         </div>
-
+        
                         <!-- Testimonio 2 -->
                         <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
                             <img src="./img/iconos/cotizacion.png" alt="Cita"
@@ -597,7 +650,7 @@
                                 </div>
                             </div>
                         </div>
-
+        
                         <!-- Testimonio 3 -->
                         <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
                             <img src="./img/iconos/cotizacion.png" alt="Cita"
@@ -617,98 +670,8 @@
                                 </div>
                             </div>
                         </div>
-
+        
                         <!-- Testimonio 4 -->
-                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
-                            <img src="./img/iconos/cotizacion.png" alt="Cita"
-                                class="absolute top-1 right-1 opacity-25 w-10 h-10">
-                            <div class="content">
-                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin
-                                    duda volveré a quedarme aquí." </p>
-                                <div class="details flex items-center">
-                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
-                                        <img src="./img/iconos/usuario.png" alt="Huésped 4"
-                                            class="object-cover w-full h-full">
-                                    </div>
-                                    <div>
-                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
-                                        <p class="text-gray-500">México, México</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
-                            <img src="./img/iconos/cotizacion.png" alt="Cita"
-                                class="absolute top-1 right-1 opacity-25 w-10 h-10">
-                            <div class="content">
-                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin
-                                    duda volveré a quedarme aquí." </p>
-                                <div class="details flex items-center">
-                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
-                                        <img src="./img/iconos/usuario.png" alt="Huésped 4"
-                                            class="object-cover w-full h-full">
-                                    </div>
-                                    <div>
-                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
-                                        <p class="text-gray-500">México, México</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
-                            <img src="./img/iconos/cotizacion.png" alt="Cita"
-                                class="absolute top-1 right-1 opacity-25 w-10 h-10">
-                            <div class="content">
-                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin
-                                    duda volveré a quedarme aquí." </p>
-                                <div class="details flex items-center">
-                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
-                                        <img src="./img/iconos/usuario.png" alt="Huésped 4"
-                                            class="object-cover w-full h-full">
-                                    </div>
-                                    <div>
-                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
-                                        <p class="text-gray-500">México, México</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
-                            <img src="./img/iconos/cotizacion.png" alt="Cita"
-                                class="absolute top-1 right-1 opacity-25 w-10 h-10">
-                            <div class="content">
-                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin
-                                    duda volveré a quedarme aquí." </p>
-                                <div class="details flex items-center">
-                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
-                                        <img src="./img/iconos/usuario.png" alt="Huésped 4"
-                                            class="object-cover w-full h-full">
-                                    </div>
-                                    <div>
-                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
-                                        <p class="text-gray-500">México, México</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
-                            <img src="./img/iconos/cotizacion.png" alt="Cita"
-                                class="absolute top-1 right-1 opacity-25 w-10 h-10">
-                            <div class="content">
-                                <p class="text-gray-600 mb-4">"Un lugar muy acogedor, con un servicio excepcional. Sin
-                                    duda volveré a quedarme aquí." </p>
-                                <div class="details flex items-center">
-                                    <div class="imgBox w-16 h-16 rounded-full overflow-hidden bg-blue-500 mr-4">
-                                        <img src="./img/iconos/usuario.png" alt="Huésped 4"
-                                            class="object-cover w-full h-full">
-                                    </div>
-                                    <div>
-                                        <h3 class="text-lg font-semibold">Ana Sánchez</h3>
-                                        <p class="text-gray-500">México, México</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
                             <img src="./img/iconos/cotizacion.png" alt="Cita"
                                 class="absolute top-1 right-1 opacity-25 w-10 h-10">
@@ -731,8 +694,6 @@
                 </div>
             </div>
         </section>
-
-
 
         <footer class="text-white py-10">
             <div class="container mx-auto px-6">
@@ -783,25 +744,23 @@
         </footer>
 
         <div id="whatsapp-button"
-            class="fixed bottom-4 left-4 bg-green-500 text-white rounded-full p-3 cursor-pointer shadow-lg z-50 transition-all duration-300 hover:bg-green-600">
+            class="fixed bottom-4 lef-4 bg-green-500 text-white rounded-full p-3 cursor-pointer shadow-lg z-50 transition-all duration-300 hover:bg-green-600">
             <i class="fab fa-whatsapp text-2xl"></i>
         </div>
 
         <!-- Tarjeta de invitación (inicialmente oculta) -->
-<div id="loginCard" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-        <h3 class="text-xl font-semibold mb-4">¡Inicia sesión o regístrate para continuar!</h3>
-        <p class="text-gray-600 mb-6">Necesitas una cuenta para realizar reservas.</p>
-        <div class="flex justify-center space-x-4">
-            <a href="./Login.html" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Iniciar sesión</a>
-            <a href="./Login.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Registrarse</a>
+        <div id="loginCard" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center w-full max-w-md">
+                <h3 class="text-xl font-semibold mb-4">¡Inicia sesión o regístrate para continuar!</h3>
+                <p class="text-gray-600 mb-6">Necesitas una cuenta para realizar reservas.</p>
+                <div class="flex flex-col space-y-4">
+                    <a href="./Login.html" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Iniciar sesión</a>
+                    <a href="./Login.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Registrarse</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-        <script src="js/main.js"></script>
-        <script src="js/carousel.js"></script>
-        <script src="js/whatsapp-button.js"></script>
+        
 </body>
 
 </html>

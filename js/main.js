@@ -1,3 +1,11 @@
+// Función para mostrar/ocultar el menú desplegable (ámbito global)
+function menuToggle() {
+    const menu = document.getElementById("userDropdown");
+    if (menu) {
+        menu.classList.toggle("hidden");
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Obtener el usuario actual desde localStorage
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -65,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: "0px 0px -100px 0px"
     };
 
-    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+    const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
         entries.forEach(entry => {
             if (!entry.isIntersecting) {
                 return;
@@ -141,27 +149,58 @@ document.addEventListener('DOMContentLoaded', () => {
         loop: true,
         spaceBetween: 30,
         autoplay: {
-            delay: 5000,
+            delay: 4000,
             disableOnInteraction: false
+        },
+        // Ajustes responsivos
+        breakpoints: {
+            320: {
+                slidesPerView: 1, // Muestra 1 slide en dispositivos móviles
+                spaceBetween: 10,
+            },
+            640: {
+                slidesPerView: 2, // Muestra 2 slides en tablets
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3, // Muestra 3 slides en pantallas grandes
+                spaceBetween: 30,
+            },
         }
     });
 
-    // Mostrar/ocultar servicios adicionales
-    const servicesGrid = document.getElementById('servicesGrid');
-    const toggleButton = document.getElementById('toggleServices');
-    const hiddenServices = servicesGrid.querySelectorAll('.hidden');
-    let expanded = false;
+    // Cerrar el menú si se hace clic fuera de él
+    document.addEventListener("click", (event) => {
+        const userMenu = document.getElementById("userMenu");
+        const menu = document.getElementById("userDropdown");
 
-    toggleButton.addEventListener('click', function() {
-        hiddenServices.forEach(service => {
-            service.classList.toggle('hidden');
-        });
-
-        expanded = !expanded;
-        toggleButton.textContent = expanded ? 'Ver menos servicios' : 'Ver más servicios';
-
-        if (!expanded) {
-            servicesGrid.scrollIntoView({ behavior: 'smooth' });
+        if (userMenu && menu && !userMenu.contains(event.target)) {
+            menu.classList.add("hidden");
         }
     });
+
+    // Función para cerrar sesión
+    document.getElementById("logoutButton")?.addEventListener("click", () => {
+        localStorage.removeItem("currentUser"); // Eliminar el usuario actual
+        window.location.reload(); // Recargar la página
+    });
+});
+
+// Mostrar/ocultar servicios adicionales
+const servicesGrid = document.getElementById('servicesGrid');
+const toggleButton = document.getElementById('toggleServices');
+const hiddenServices = servicesGrid.querySelectorAll('.hidden');
+let expanded = false;
+
+toggleButton.addEventListener('click', function () {
+    hiddenServices.forEach(service => {
+        service.classList.toggle('hidden');
+    });
+
+    expanded = !expanded;
+    toggleButton.textContent = expanded ? 'Ver menos servicios' : 'Ver más servicios';
+
+    if (!expanded) {
+        servicesGrid.scrollIntoView({ behavior: 'smooth' });
+    }
 });

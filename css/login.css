@@ -173,6 +173,11 @@ button:active {
     transform: translateX(50%);
 }
 
+#link{
+    display: flex;
+    justify-content: center;
+}
+
 .overlay-left, .overlay-right {
     position: absolute;
     display: flex;
@@ -318,5 +323,18 @@ button:active {
     
     #signUp2{
         padding: 10px;
+    }
+    .back-button{
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+        
+    }
+    #link{
+        display: flex;
+        justify-content: center;
     }
 }
