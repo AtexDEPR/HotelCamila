@@ -21,7 +21,7 @@
 </head>
 
 <body class="font-sans overflow-x-hidden">
-    
+
     <header class="bg-white shadow-md fixed w-full z-10 transition-all duration-300">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <!-- Logo -->
@@ -29,18 +29,9 @@
                 <img src="img/logo.png" alt="Logo Hotel el Rincón del Carmen" class="h-8 mr-2">
                 <span class="hidden sm:inline">Hotel el Rincón del Carmen</span>
             </a>
-    
-            <!-- Botón de menú móvil -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600">
-                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                        <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z" />
-                    </svg>
-                </button>
-            </div>
-    
+
             <!-- Menú de navegación -->
-            <ul class="hidden md:flex space-x-4">
+            <ul class="hidden md:flex space-x-4 items-center">
                 <li><a href="#home" class="text-gray-800 hover:text-blue-600 px-3 py-2">Inicio</a></li>
                 <li><a href="#about" class="text-gray-800 hover:text-blue-600 px-3 py-2">Sobre Nosotros</a></li>
                 <li><a href="#rooms" class="text-gray-800 hover:text-blue-600 px-3 py-2">Habitaciones</a></li>
@@ -48,85 +39,99 @@
                 <li><a href="#services" class="text-gray-800 hover:text-blue-600 px-3 py-2">Servicios</a></li>
                 <li><a href="#testimonials" class="text-gray-800 hover:text-blue-600 px-3 py-2">Testimonios</a></li>
                 <li><a href="./contacto.html" class="text-gray-800 hover:text-blue-600 px-3 py-2">Contacto</a></li>
-    
-                <!-- Contenedor dinámico para el usuario autenticado -->
+                <li id="loginButton"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">
+                    <a href="./Login.html">Iniciar sesión</a>
+                </li>
+
+                <!-- Menú desplegable del usuario -->
                 <li id="userMenu" class="relative">
                     <!-- Botón de usuario -->
-                    <div id="userProfile" class="hidden flex items-center space-x-2 cursor-pointer">
+                    <div id="userProfile" class="flex items-center space-x-2 cursor-pointer">
                         <img src="./img/Ususario.webp" alt="Foto de perfil" class="w-8 h-8 rounded-full">
-                        <span id="userName" class="text-gray-800 hover:text-blue-600" onclick="menuToggle()">Nombre del Usuario</span>
+                        <span id="userName" class="text-gray-800 hover:text-blue-600">Nombre del Usuario</span>
+                        <i class="fas fa-chevron-down text-gray-600"></i>
                     </div>
-                
+
                     <!-- Menú desplegable -->
-                    <div id="userDropdown" class="menu absolute top-12 right-0 bg-white shadow-lg rounded-lg w-48 py-2 z-50 hidden">
-                        <h3 class="px-4 py-2 text-sm font-semibold text-gray-700">Nombre del Usuario <br><span class="text-xs text-gray-500">Rol del Usuario</span></h3>
-                        <ul>
-                            <li class="px-4 py-2 hover:bg-gray-100">
-                                <a href="#" class="flex items-center space-x-2 text-gray-700">
-                                    <img src="./img/iconos/user.png" alt="Mi Perfil" class="w-4 h-4">
-                                    <span>Mi Perfil</span>
-                                </a>
-                            </li>
-                            <li class="px-4 py-2 hover:bg-gray-100">
-                                <a href="#" class="flex items-center space-x-2 text-gray-700">
-                                    <img src="./img/iconos/edit.png" alt="Editar Perfil" class="w-4 h-4">
-                                    <span>Editar Perfil</span>
-                                </a>
-                            </li>
-                            <li class="px-4 py-2 hover:bg-gray-100">
-                                <a href="#" class="flex items-center space-x-2 text-gray-700">
-                                    <img src="./img/iconos/envelope.png" alt="Mensajes" class="w-4 h-4">
-                                    <span>Mensajes</span>
-                                </a>
-                            </li>
-                            <li class="px-4 py-2 hover:bg-gray-100">
-                                <a href="#" class="flex items-center space-x-2 text-gray-700">
-                                    <img src="./img/iconos/settings.png" alt="Configuración" class="w-4 h-4">
-                                    <span>Configuración</span>
-                                </a>
-                            </li>
-                            <li class="px-4 py-2 hover:bg-gray-100">
-                                <a href="#" class="flex items-center space-x-2 text-gray-700">
-                                    <img src="./img/iconos/question.png" alt="Ayuda" class="w-4 h-4">
-                                    <span>Ayuda</span>
-                                </a>
-                            </li>
-                            <li class="px-4 py-2 hover:bg-gray-100">
-                                <a href="#" id="logoutButton" class="flex items-center space-x-2 text-gray-700">
-                                    <img src="./img/iconos/log-out.png" alt="Cerrar Sesión" class="w-4 h-4">
-                                    <span>Cerrar Sesión</span>
-                                </a>
-                            </li>
-                        </ul>
+                    <div id="userDropdown"
+                        class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 z-50 hidden">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <i class="fas fa-user mr-2"></i>Mi Perfil
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <i class="fas fa-edit mr-2"></i>Editar Perfil
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <i class="fas fa-envelope mr-2"></i>Mensajes
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <i class="fas fa-cog mr-2"></i>Configuración
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <i class="fas fa-question-circle mr-2"></i>Ayuda
+                        </a>
+                        <a href="#" id="logoutButton" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                            <i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión
+                        </a>
                     </div>
-                </li>
-    
-                <!-- Enlace de inicio de sesión/registro para usuarios no autenticados -->
-                <li>
-                    <a href="./Login.html" id="loginLink" class="text-gray-800 hover:text-blue-600 px-3 py-2">Iniciar sesión / Registrarse</a>
                 </li>
             </ul>
-        </nav>
-    
-        <!-- Menú desplegable para móviles y tabletas -->
-        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
-            <a href="#home" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Inicio</a>
-            <a href="#about" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Sobre Nosotros</a>
-            <a href="#rooms" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Habitaciones</a>
-            <a href="./reservas.html" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Reservas</a>
-            <a href="#services" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Servicios</a>
-            <a href="#testimonials" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Testimonios</a>
-            <a href="./contacto.html" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Contacto</a>
-    
-            <!-- Contenedor dinámico para el usuario autenticado en móvil -->
-            <div id="mobileUserProfile" class="hidden flex items-center space-x-2 p-3">
-                <img src="./img/Ususario.webp" alt="Foto de perfil" class="w-8 h-8 rounded-full">
-                <span id="mobileUserName" class="text-gray-800 hover:text-blue-600"></span>
+
+            <!-- Botón de menú móvil -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
             </div>
-    
-            <!-- Enlace de inicio de sesión/registro para usuarios no autenticados en móvil -->
-            <a href="./Login.html" id="mobileLoginLink" class="block text-gray-800 hover:text-blue-600 px-3 py-2">Iniciar sesión / Registrarse</a>
+        </nav>
+
+        <!-- Menú móvil -->
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 w-full bg-white shadow-lg">
+            <a href="#home" class="block text-gray-800 hover:text-blue-600 px-4 py-2">Inicio</a>
+            <a href="#about" class="block text-gray-800 hover:text-blue-600 px-4 py-2">Sobre Nosotros</a>
+            <a href="#rooms" class="block text-gray-800 hover:text-blue-600 px-4 py-2">Habitaciones</a>
+            <a href="./reservas.html" class="block text-gray-800 hover:text-blue-600 px-4 py-2">Reservas</a>
+            <a href="#services" class="block text-gray-800 hover:text-blue-600 px-4 py-2">Servicios</a>
+            <a href="#testimonials" class="block text-gray-800 hover:text-blue-600 px-4 py-2">Testimonios</a>
+            <a href="./contacto.html" class="block text-gray-800 hover:text-blue-600 px-4 py-2">Contacto</a>
+            <div id="mobileLoginButton"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">
+                <a href="./Login.html" class="block text-white">Iniciar sesión</a>
+            </div>
+            <!-- Menú desplegable del usuario -->
+            <div id="mobileUserMenu" class="relative">
+                <!-- Botón de usuario -->
+                <div id="mobileUserProfile" class="flex items-center space-x-2 cursor-pointer px-4 py-2">
+                    <img src="./img/Ususario.webp" alt="Foto de perfil" class="w-8 h-8 rounded-full">
+                    <span id="mobileUserName" class="text-gray-800 hover:text-blue-600">Nombre del Usuario</span>
+                    <i class="fas fa-chevron-down text-gray-600"></i>
+                </div>
+
+                <!-- Menú desplegable -->
+                <div id="mobileUserDropdown" class="hidden bg-white shadow-lg rounded-lg py-2 z-50">
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-user mr-2"></i>Mi Perfil
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-edit mr-2"></i>Editar Perfil
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-envelope mr-2"></i>Mensajes
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-cog mr-2"></i>Configuración
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-question-circle mr-2"></i>Ayuda
+                    </a>
+                    <a href="#" id="mobileLogoutButton" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión
+                    </a>
+                </div>
+            </div>
         </div>
+
     </header>
 
     <main>
@@ -162,6 +167,10 @@
                                 <option value="4">4 personas</option>
                                 <option value="5">5 personas</option>
                                 <option value="6">6 personas</option>
+                                <option value="7">7 personas</option>
+                                <option value="8">8 personas</option>
+                                <option value="9">9 personas</option>
+                                <option value="10">10 personas</option>
                             </select>
                         </div>
                         <div>
@@ -200,6 +209,78 @@
                 </div>
             </div>
         </section>
+
+        <section id="galeria" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-8">Nuestra Galería</h2>
+                <div class="relative overflow-hidden">
+                    <!-- Deslizador -->
+                    <div id="deslizador"
+                        class="flex transition-transform duration-500 ease-in-out space-x-4 overflow-x-auto snap-x snap-mandatory">
+                        <!-- Elementos de la galería -->
+                        <div class="flex-shrink-0 w-80 snap-center">
+                            <img src="./img/areas-comunes/cartagena_dubai_exterior_piscina_tumbonas_1_1600x1090-1600h.webp"
+                                alt="Galería 1" class="w-full h-full rounded-lg">
+                        </div>
+                        <div class="flex-shrink-0 w-80 snap-center">
+                            <img src="./img/areas-comunes/DUBAI-CARTAGENA-16-2304w.webp" alt="Galería 2"
+                                class="w-full h-full rounded-lg">
+                        </div>
+                        <div class="flex-shrink-0 w-80 snap-center">
+                            <img src="./img/areas-comunes/DUBAI-CARTAGENA-36-2304w.webp" alt="Galería 3"
+                                class="w-full h-full rounded-lg">
+                        </div>
+                        <div class="flex-shrink-0 w-80 snap-center">
+                            <img src="./img/areas-comunes/DUBAI-CARTAGENA-4-2304w.webp" alt="Galería 4"
+                                class="w-full h-full rounded-lg">
+                        </div>
+                        <div class="flex-shrink-0 w-80 snap-center">
+                            <img src="./img/areas-comunes/DUBAI-CARTAGENA-5-2304w.webp" alt="Galería 5"
+                                class="w-full h-full rounded-lg">
+                        </div>
+                        <div class="flex-shrink-0 w-80 snap-center">
+                            <img src="./img/areas-comunes/DUBAI-CARTAGENA-52-2304w.webp" alt="Galería 6"
+                                class="w-full h-full rounded-lg">
+                        </div>
+                        <div class="flex-shrink-0 w-80 snap-center">
+                            <img src="./img/areas-comunes/dubai-cartagena-54-1920w.webp" alt="Galería 7"
+                                class="w-full h-full rounded-lg">
+                        </div>
+                        <div class="flex-shrink-0 w-80 snap-center">
+                            <img src="./img/areas-comunes/dubai-cartagena-54.webp" alt="Galería 8"
+                                class="w-full h-full rounded-lg">
+                        </div>
+                        <div class="flex-shrink-0 w-80 snap-center">
+                            <img src="./img/areas-comunes/DUBAI-CARTAGENA-66-1920w.webp" alt="Galería 9"
+                                class="w-full h-full rounded-lg">
+                        </div>
+                    </div>
+                    <!-- Botones de navegación -->
+                    <div class="absolute top-1/2 left-0 transform -translate-y-1/2 px-4">
+                        <button id="btnAnterior"
+                            class="bg-gray-800 text-white p-2 rounded-full opacity-50 hover:opacity-100 transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="absolute top-1/2 right-0 transform -translate-y-1/2 px-4">
+                        <button id="btnSiguiente"
+                            class="bg-gray-800 text-white p-2 rounded-full opacity-50 hover:opacity-100 transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
 
         <section id="rooms" class="py-20 bg-gray-100 fade-in-section">
             <div class="container mx-auto px-6">
@@ -606,7 +687,7 @@
         <section class="py-20" id="testimonials">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center mb-8">Lo que dicen nuestros huéspedes</h2>
-        
+
                 <!-- Swiper -->
                 <div class="swiper-container overflow-hidden">
                     <div class="swiper-wrapper">
@@ -630,7 +711,7 @@
                                 </div>
                             </div>
                         </div>
-        
+
                         <!-- Testimonio 2 -->
                         <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
                             <img src="./img/iconos/cotizacion.png" alt="Cita"
@@ -650,7 +731,7 @@
                                 </div>
                             </div>
                         </div>
-        
+
                         <!-- Testimonio 3 -->
                         <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
                             <img src="./img/iconos/cotizacion.png" alt="Cita"
@@ -670,7 +751,7 @@
                                 </div>
                             </div>
                         </div>
-        
+
                         <!-- Testimonio 4 -->
                         <div class="swiper-slide bg-white rounded-lg shadow-lg p-8 h-80 w-80 relative">
                             <img src="./img/iconos/cotizacion.png" alt="Cita"
@@ -754,13 +835,15 @@
                 <h3 class="text-xl font-semibold mb-4">¡Inicia sesión o regístrate para continuar!</h3>
                 <p class="text-gray-600 mb-6">Necesitas una cuenta para realizar reservas.</p>
                 <div class="flex flex-col space-y-4">
-                    <a href="./Login.html" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Iniciar sesión</a>
-                    <a href="./Login.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Registrarse</a>
+                    <a href="./Login.html" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Iniciar
+                        sesión</a>
+                    <a href="./Login.html"
+                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Registrarse</a>
                 </div>
             </div>
         </div>
 
-        
+
 </body>
 
 </html>

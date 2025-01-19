@@ -1,21 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Elementos UI
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('main');
     const registerForm = document.querySelector('.sign-up form');
     const loginForm = document.querySelector('.sign-in form');
-    const registerMessage = document.createElement('div'); // Mensaje de registro dinámico
-    const loginMessage = document.createElement('div'); // Mensaje de inicio de sesión dinámico
+    const registerMessage = document.createElement('div');
+    const loginMessage = document.createElement('div');
 
-    // Agregar mensajes al DOM
     registerForm.appendChild(registerMessage);
     loginForm.appendChild(loginMessage);
 
-    // URL base del JSON Server
-    const API_URL = 'http://localhost:3000'; // Cambia esto por la URL de tu JSON Server
-
-    // Event Listeners para cambiar entre formularios
     signUpButton.addEventListener('click', () => {
         container.classList.add("right-panel-active");
     });
@@ -24,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         container.classList.remove("right-panel-active");
     });
 
-    // Función para mostrar mensajes
     const showMessage = (element, message, type) => {
         element.textContent = message;
         element.className = `message ${type}`;
@@ -34,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     };
 
-    // Registro de usuario
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -45,41 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            // Verificar si el usuario ya existe
-            const checkUser = await fetch(`${API_URL}/usuarios?email=${userData.email}`);
-            const existingUser = await checkUser.json();
+            const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+            const existingUser = existingUsers.find(user => user.email === userData.email);
 
-            if (existingUser.length > 0) {
+            if (existingUser) {
                 showMessage(registerMessage, 'Este correo ya está registrado', 'error');
                 return;
             }
 
-            // Registrar nuevo usuario
-            const response = await fetch(`${API_URL}/usuarios`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData)
-            });
+            existingUsers.push(userData);
+            localStorage.setItem('users', JSON.stringify(existingUsers));
 
-            if (response.ok) {
-                showMessage(registerMessage, 'Registro exitoso', 'success');
-                registerForm.reset();
-                // Cambiar a la vista de login después de un registro exitoso
-                setTimeout(() => {
-                    container.classList.remove("right-panel-active");
-                }, 1500);
-            } else {
-                showMessage(registerMessage, 'Error en el registro', 'error');
-            }
+            showMessage(registerMessage, 'Registro exitoso', 'success');
+            registerForm.reset();
+
+            setTimeout(() => {
+                container.classList.remove("right-panel-active");
+            }, 1500);
         } catch (error) {
-            showMessage(registerMessage, 'Error en el servidor', 'error');
+            showMessage(registerMessage, 'Error en el registro', 'error');
             console.error('Error:', error);
         }
     });
 
-    // Login de usuario
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -89,21 +69,18 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch(`${API_URL}/usuarios?email=${loginData.email}`);
-            const users = await response.json();
+            const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+            const user = existingUsers.find(user => user.email === loginData.email);
 
-            if (users.length === 0) {
+            if (!user) {
                 showMessage(loginMessage, 'Usuario no encontrado', 'error');
                 return;
             }
 
-            const user = users[0];
             if (user.password === loginData.password) {
                 showMessage(loginMessage, '¡Bienvenido!', 'success');
-                // Guardar el usuario en localStorage
                 localStorage.setItem('currentUser', JSON.stringify(user));
-                // Redirigir al usuario a la página principal
-                window.location.href = './index.html';
+                window.location.href = './index.html'; // Redirigir al inicio
             } else {
                 showMessage(loginMessage, 'Contraseña incorrecta', 'error');
             }
