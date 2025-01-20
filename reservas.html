@@ -1,11 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reservas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Hotel el Rincón del Carmen</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./js/reservas.js" defer></script>
+    <script src="./js/whatsapp-button.js"></script>
+    <style>
+      footer {
+        background-color: rgba(12, 12, 12, 0.884);
+      }
+    </style>
 </head>
-<body>
-  
+<body class="bg-gray-100 font-sans">
+    <!-- Barra de navegación -->
+    <header class="bg-white shadow-md fixed w-full z-10">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="./index.html" class="font-bold text-xl text-gray-800 flex items-center">
+                <img src="./img/logo.png" alt="Logo Hotel el Rincón del Carmen" class="h-8 mr-2">
+                <span class="hidden sm:inline">Hotel el Rincón del Carmen</span>
+            </a>
+            <!-- Menú para móviles -->
+            <button id="menu-toggle" class="md:hidden text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <!-- Menú principal -->
+            <ul id="menu" class="hidden md:flex space-x-4 items-center">
+                <li><a href="./index.html" class="text-gray-800 hover:text-blue-600 px-3 py-2">Inicio</a></li>
+                <li><a href="./reservas.html" class="text-gray-800 hover:text-blue-600 px-3 py-2">Reservas</a></li>
+                <li><a href="./contacto.html" class="text-gray-800 hover:text-blue-600 px-3 py-2">Contacto</a></li>
+                <!-- Nuevo enlace para ver reservas -->
+                <li id="ver-reservas-link" class="hidden">
+                    <a href="#" class="text-gray-800 hover:text-blue-600 px-3 py-2">Mis Reservas</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <h1 class="text-3xl font-bold text-center mb-8">Reservas</h1>
+
+            <!-- Filtro de búsqueda -->
+            <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+                <h2 class="text-xl font-semibold mb-4">Filtrar habitaciones</h2>
+                <form id="filtro-form" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Fechas -->
+                    <div>
+                        <label for="fecha-inicio" class="block text-sm font-medium text-gray-700">Fecha de llegada</label>
+                        <input type="date" id="fecha-inicio" name="fecha-inicio" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label for="fecha-fin" class="block text-sm font-medium text-gray-700">Fecha de salida</label>
+                        <input type="date" id="fecha-fin" name="fecha-fin" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+
+                    <!-- Capacidad -->
+                    <div>
+                        <label for="capacidad" class="block text-sm font-medium text-gray-700">Número de huéspedes</label>
+                        <input type="number" id="capacidad" name="capacidad" min="1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+
+                    <!-- Tipo de habitación -->
+                    <div>
+                        <label for="tipo-habitacion" class="block text-sm font-medium text-gray-700">Tipo de habitación</label>
+                        <select id="tipo-habitacion" name="tipo-habitacion" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                            <option value="">Todos</option>
+                            <option value="Habitación Estándar">Habitación Estándar</option>
+                            <option value="Suite Junior">Suite Junior</option>
+                            <option value="Suite Ejecutiva">Suite Ejecutiva</option>
+                            <option value="Suite Presidencial">Suite Presidencial</option>
+                            <option value="Suite VIP">Suite VIP</option>
+                        </select>
+                    </div>
+
+                    <!-- Servicios adicionales -->
+                    <div class="md:col-span-2 lg:col-span-4">
+                        <label class="block text-sm font-medium text-gray-700">Servicios</label>
+                        <div class="mt-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="minibar" class="mr-2">
+                                <span>Minibar</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="jacuzzi" class="mr-2">
+                                <span>Jacuzzi</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="internet" class="mr-2">
+                                <span>Internet</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="tv" class="mr-2">
+                                <span>TV</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="vista_al_mar" class="mr-2">
+                                <span>Vista al mar</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="balcon" class="mr-2">
+                                <span>Balcón</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="aire_acondicionado" class="mr-2">
+                                <span>Aire Acondicionado</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="recepcion_24_horas" class="mr-2">
+                                <span>Recepción 24 horas</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="limpieza_diaria" class="mr-2">
+                                <span>Limpieza Diaria</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="wifi_gratuito" class="mr-2">
+                                <span>WiFi Gratuito</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="sabanas_y_toallas" class="mr-2">
+                                <span>Sábanas y Toallas</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="amenidades_de_bano" class="mr-2">
+                                <span>Amenidades de Baño</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="desayuno_basico" class="mr-2">
+                                <span>Desayuno Básico</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="estacionamiento" class="mr-2">
+                                <span>Estacionamiento</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="servicio_de_despertador" class="mr-2">
+                                <span>Servicio de Despertador</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="servicio_de_telefono" class="mr-2">
+                                <span>Servicio de Teléfono</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="concierge" class="mr-2">
+                                <span>Concierge</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="spa_y_bienestar" class="mr-2">
+                                <span>Spa y Bienestar</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="restaurantes_gourmet" class="mr-2">
+                                <span>Restaurantes Gourmet</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="servicio_de_mayordomo" class="mr-2">
+                                <span>Servicio de Mayordomo</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="piscinas_de_lujo" class="mr-2">
+                                <span>Piscinas de Lujo</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="transporte_privado" class="mr-2">
+                                <span>Transporte Privado</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="salas_de_reuniones_y_eventos" class="mr-2">
+                                <span>Salas de Reuniones y Eventos</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="habitaciones_tematicas_o_suites_de_lujo" class="mr-2">
+                                <span>Habitaciones Temáticas o Suites de Lujo</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="club_lounge" class="mr-2">
+                                <span>Club Lounge</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="servicios" value="actividades_de_lujo" class="mr-2">
+                                <span>Actividades de Lujo</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Botón de búsqueda -->
+                    <div class="md:col-span-2 lg:col-span-4 flex justify-center">
+                        <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600">Buscar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Resultados de búsqueda -->
+            <div id="resultados" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Las habitaciones filtradas se mostrarán aquí -->
+            </div>
+
+            <!-- Modal para mostrar las reservas del usuario -->
+            <div id="reservas-modal-container" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
+                    <h2 class="text-2xl font-bold mb-4">Mis Reservas</h2>
+                    <div id="reservas-modal"></div>
+                    <button id="cerrar-reservas-modal" class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 mt-4">Cerrar</button>
+                </div>
+            </div>
+
+            <!-- Tarjeta de detalles de la habitación (oculta inicialmente) -->
+            <div id="detalles-habitacion" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
+                    <h2 id="detalles-titulo" class="text-2xl font-bold mb-4"></h2>
+                    <div id="detalles-imagenes" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <!-- Imágenes de la habitación -->
+                    </div>
+                    <div id="detalles-servicios" class="overflow-x-auto whitespace-nowrap mb-4">
+                        <!-- Servicios de la habitación -->
+                    </div>
+                    <p id="detalles-precio" class="text-lg font-semibold mb-4"></p>
+                    <p class="text-sm text-gray-600 mb-4">
+                        <strong>Horario de check-in:</strong> 14:00 - 16:00. Si no haces efectiva la reserva antes de las 16:00, la habitación quedará disponible para otros.
+                    </p>
+                    <p class="text-sm text-gray-600 mb-4">
+                        <strong>Prueba:</strong> Para testeo, el check-in se cierra en 5 minutos.
+                    </p>
+                    <button id="confirmar-reserva" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600">Confirmar reserva</button>
+                    <button id="cerrar-detalles" class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 ml-2">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Botón de WhatsApp -->
+    <div id="whatsapp-button" class="fixed bottom-4 left-4 bg-green-500 text-white rounded-full p-3 cursor-pointer shadow-lg z-50 transition-all duration-300 hover:bg-green-600">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p class="">&copy; 2023 Hotel el Rincón del Carmen. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script para manejar el menú en móviles -->
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("hidden");
+        });
+    </script>
 </body>
 </html>
