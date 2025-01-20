@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   (imagen) => `
                   <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-md">
                     <img 
-                      src="./img/habitaciones/${imagen}" 
+                      src="../img/habitaciones/${imagen}" 
                       alt="Imagen de la habitación" 
                       class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
                     >
